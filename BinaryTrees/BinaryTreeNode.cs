@@ -39,18 +39,33 @@ namespace BinaryTrees
         public void Add(BinaryTreeNode<TKey, TValue> node)
         {
             //TODO #2: Add the new node following the order:
-            int comparacion = Key.CompareTo(node.Key);
+            int comparacion = this.Key.CompareTo(node.Key);
 
             if (comparacion > 0)
             {
-                if (LeftChild == null)
+                if (this.LeftChild == null)
                 {
                     this.LeftChild = node;
                 }
                 else
                 {
-                    LeftChild.Add(node);
+                   this.LeftChild.Add(node);
                 }
+            }
+            else if (comparacion < 0)
+            {
+                if (this.RightChild == null)
+                {
+                    this.RightChild = node;
+                }
+                else
+                {
+                   this. RightChild.Add(node);
+                }
+            }
+            else
+            {
+                this.Value = node.Value;
             }
             //          -If the current node (this) has a higher key that the new node (use CompareTo()), the new node should be on this node's left.
             //              a) If the left child is null, the added node should be this node's left node side
