@@ -147,7 +147,7 @@ namespace BinaryTrees
             else
             {
                 //si falla algo es esto pero deberia ser asi
-                return Value;
+                return this.Value;
             }
             //TODO #5: Find the node that has this key:
             //          -If the current node (this) has a higher key that the new node (use CompareTo()), the key we are searching for should be on this node's left side.
@@ -160,7 +160,47 @@ namespace BinaryTrees
         }
 
         public BinaryTreeNode<TKey, TValue> Remove(TKey key)
+
         {
+
+            int comparacion = key.CompareTo(this.Key);
+
+            if (comparacion < 0)
+            {
+                if (this.LeftChild != null)
+                {
+                    LeftChild = LeftChild.Remove(key);
+                }
+            }
+            else if (comparacion > 0)
+            {
+                if (this.RightChild != null)
+                {
+
+                    RightChild = RightChild.Remove(key);
+                }
+            }
+            else
+            {
+                if (this.LeftChild == null && this.RightChild == null)
+                {
+
+                    return null;
+                }
+                if (this.LeftChild == null)
+                {
+                    return this.RightChild;
+                }
+                if (this.RightChild == null)
+                {
+                    return this.LeftChild;
+                }
+                
+                BinaryTreeNode<TKey, TValue> successor = this.RightChild;
+            }
+
+            
+         
             //TODO #6: Remove the node that has this key. The parent may need to update one of its children,
             //so this method returns the node with which this node needs to be replaced. If this node isn't the
             //one we are looking for, we will return this, so that the parent node can replace LeftChild/RightChild
