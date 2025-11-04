@@ -97,15 +97,15 @@ namespace BinaryTrees
             //TODO #4: Return the height of this tree
             if (LeftChild != null && RightChild != null)
             {
-                return 1 + Math.Max(LeftChild.Count() , RightChild.Count() ) ;
+                return 1 + Math.Max(LeftChild.Count(), RightChild.Count());
             }
             else if (LeftChild != null)
             {
-                return 1 + Math.Max(LeftChild.Count() , 0 );
+                return 1 + Math.Max(LeftChild.Count(), 0);
             }
             else if (RightChild != null)
             {
-                return 1 + Math.Max( RightChild.Count() , 0 );
+                return 1 + Math.Max(RightChild.Count(), 0);
             }
             else
             {

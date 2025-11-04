@@ -18,5 +18,6 @@ class MainClass
             return;
         }
         Console.WriteLine($"All tests passed. Time: {stopwatch.Elapsed.TotalSeconds}s");
+
     }
 }

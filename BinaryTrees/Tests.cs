@@ -9,6 +9,7 @@ namespace BinaryTrees
         public bool Success { get; set; }
         public double Time { get; set; }
     }
+
     public static class Tests
     {
         public static bool TestBinaryTree(Action<string> onProgress, Action<string> onError)
@@ -95,11 +96,12 @@ namespace BinaryTrees
             count = tree.Count();
             if (count != 15 || tree.Get(6) != "six")
             {
-                onError($"Error. Get(6) after Add(6,\"six\") returned \"{tree.Get(6)}\" instead of \"six\"");
+                onError(
+                    $"Error. Get(6) after Add(6,\"six\") returned \"{tree.Get(6)}\" instead of \"six\""
+                );
                 return false;
             }
             onProgress("Ok");
-
 
             onProgress("Testing Remove() with leaf nodes...");
             tree.Remove(6);
@@ -186,7 +188,9 @@ namespace BinaryTrees
             newCount = tree.Count();
             if (oldHeight <= newHeight || oldCount != newCount)
             {
-                onError($"Balance() didn't work. Height before is {oldHeight} and after is {newHeight}. Count is {newCount} instead of {oldCount}");
+                onError(
+                    $"Balance() didn't work. Height before is {oldHeight} and after is {newHeight}. Count is {newCount} instead of {oldCount}"
+                );
                 return false;
             }
             onProgress("Ok");
@@ -194,11 +198,8 @@ namespace BinaryTrees
             onProgress("Tree after balancing:");
             onProgress(tree.ToString());
 
-
             return true;
         }
-
-
 
         public static bool MeasureBinaryTreeSpeed(Action<string> onProgress, Action<string> onError)
         {

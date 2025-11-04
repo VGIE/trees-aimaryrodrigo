@@ -10,12 +10,12 @@ namespace Trees
         private T Value;
 
         //TODO #1: Declare a member variable called "Children" as a list of TreeNode<T> objects
-        List <TreeNode<T>> Children ;
+        List<TreeNode<T>> Children;
 
         public TreeNode(T value)
         {
             //TODO #2: Initialize member variables/attributes
-            Children = new List<TreeNode<T>> ();
+            Children = new List<TreeNode<T>>();
             Value = value;
         }
 
@@ -52,7 +52,7 @@ namespace Trees
         {
             //TODO #5: Return the total number of elements in this tree
             int cont = 1;
-            for(int i = 0; i < Children.Count();i++)
+            for (int i = 0; i < Children.Count(); i++)
             {
                 cont += Children.Get(i).Count();
             }
@@ -67,7 +67,7 @@ namespace Trees
             {
                 return 0;
             }
-            for(int i = 0; i < Children.Count(); i++)
+            for (int i = 0; i < Children.Count(); i++)
             {
                 maxAlt = Math.Max(maxAlt, Children.Get(i).Height());
             }
@@ -93,7 +93,6 @@ namespace Trees
                     node.Remove(value);
                 }
             }
-            
         }
 
         public TreeNode<T> Find(T value)
@@ -109,15 +108,12 @@ namespace Trees
                 {
                     TreeNode<T> child = Children.Get(i);
 
-
                     if (child.Value.Equals(value))
                     {
                         return child;
                     }
 
-
                     TreeNode<T> resultado = child.Find(value);
-
 
                     if (resultado != null)
                     {
