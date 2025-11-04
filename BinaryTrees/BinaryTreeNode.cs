@@ -95,29 +95,21 @@ namespace BinaryTrees
         public int Height()
         {
             //TODO #4: Return the height of this tree
-            if (LeftChild == null || RightChild == null)
+            if (LeftChild != null && RightChild != null)
             {
-                return Count();
+                return 1 + Math.Max(LeftChild.Count() , RightChild.Count() ) ;
             }
-            int left = 1;
-            if (LeftChild != null)
+            else if (LeftChild != null)
             {
-                left += LeftChild.Count();
-                left--;
+                return 1 + Math.Max(LeftChild.Count() , 0 );
             }
-            int right = 1;
-            if (RightChild != null)
+            else if (RightChild != null)
             {
-                right += RightChild.Count();
-                right--;
-            }
-            if (right >= left)
-            {
-                return right;
+                return 1 + Math.Max( RightChild.Count() , 0 );
             }
             else
             {
-                return left;
+                return 0;
             }
         }
 
