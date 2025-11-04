@@ -103,11 +103,13 @@ namespace BinaryTrees
             if (LeftChild != null)
             {
                 left += LeftChild.Count();
+                left--;
             }
             int right = 1;
             if (RightChild != null)
             {
                 right += RightChild.Count();
+                right--;
             }
             if (right >= left)
             {
@@ -160,9 +162,7 @@ namespace BinaryTrees
         }
 
         public BinaryTreeNode<TKey, TValue> Remove(TKey key)
-
         {
-
             int comparacion = key.CompareTo(this.Key);
 
             if (comparacion < 0)
@@ -176,7 +176,6 @@ namespace BinaryTrees
             {
                 if (this.RightChild != null)
                 {
-
                     RightChild = RightChild.Remove(key);
                 }
             }
@@ -184,7 +183,6 @@ namespace BinaryTrees
             {
                 if (this.LeftChild == null && this.RightChild == null)
                 {
-
                     return null;
                 }
                 if (this.LeftChild == null)
@@ -195,18 +193,25 @@ namespace BinaryTrees
                 {
                     return this.LeftChild;
                 }
-                
-                BinaryTreeNode<TKey, TValue> successor = this.RightChild;
+
+                BinaryTreeNode<TKey, TValue> sucesor = this.RightChild;
+
+                while (sucesor.LeftChild != null)
+                {
+                    sucesor = sucesor.LeftChild;
+                }
+                this.Key = sucesor.Key;
+                this.Value = sucesor.Value;
+
+                this.RightChild = this.RightChild.Remove(sucesor.Key);
             }
 
-            
-         
+            return this;
+
             //TODO #6: Remove the node that has this key. The parent may need to update one of its children,
             //so this method returns the node with which this node needs to be replaced. If this node isn't the
             //one we are looking for, we will return this, so that the parent node can replace LeftChild/RightChild
             //with the same node it had.
-
-            return null;
         }
 
         public int KeysToArray(TKey[] keys, int index)
